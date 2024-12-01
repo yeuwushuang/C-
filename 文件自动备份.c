@@ -1,9 +1,9 @@
-﻿
+
 #define _CRT_SECURE_NO_WARNINGS
 #include <Windows.h>
 #include <stdio.h>
 #include <locale.h>
-void create(wchar_t *str)
+void create(wchar_t* str)
 {
 	// 创建文件夹模块
 	if (CreateDirectoryW(str, NULL)) // 创建文件夹
@@ -16,7 +16,7 @@ void create(wchar_t *str)
 	}
 }
 
-void FFile_fine(wchar_t *str, wchar_t *backups)
+void FFile_fine(wchar_t* str, wchar_t* backups)
 {
 	// 复制复制文件模块
 	WIN32_FIND_DATAW Fine_Structure;							   // 存储文件或文件夹信息
@@ -62,9 +62,13 @@ int main()
 {
 	setlocale(LC_ALL, "chs"); // 防止乱码
 	// 需要自动保存的文件夹
-	wchar_t *str = L"C:\\Users\\333\\Desktop\\MITER196\\.minecraft\\MITE\\saves\\1.6.4\\极其困难的世界";
+	wchar_t* str = L"C:\\Users\\333\\Desktop\\MITER196\\.minecraft\\MITE\\saves\\1.6.4\\极其困难的世界";
 	// 保存的个路径
 	wchar_t backups[400] = L"C:\\Users\\333\\Desktop\\233\\极其困难的世界";
+	// 以分钟为单位
+	int time = 3;
+	if(GetFileAttributesW(backups)!= INVALID_FILE_ATTRIBUTES)
+		
 	while (1)
 	{
 		SYSTEMTIME Fine_File;
@@ -73,7 +77,10 @@ int main()
 		create(backups);		  // 创建存档文件夹
 		FFile_fine(str, backups); // 复制文件
 		wprintf(L"保存成功 %ls\n", backups);
-		Sleep(30000); // 指定存档时间
+		Sleep(time * 100); // 指定存档时间
+	}
+	else {
+		printf("备份源不存在");
 	}
 	return 0;
 }
