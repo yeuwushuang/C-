@@ -69,7 +69,7 @@ int main()
 	wchar_t str_backups[400];
 	// 以分钟为单位
 	int time = 1;
-	//Sleep(time * 1000); // 防止启动程序就备份
+	Sleep(time * 60000); // 防止启动程序就备份
 	if (GetFileAttributesW(str) != INVALID_FILE_ATTRIBUTES)
 	{ // 判断源文件是否存在
 
@@ -82,7 +82,7 @@ int main()
 			FFile_fine(str, str_backups); // 复制文件
 			wprintf(L"保存成功 %ls\n", str_backups);
 			str_backups[0] = '\0';
-			Sleep(time * 10000); // 指定存档时间
+			Sleep(time * 60000); // 指定存档时间
 		}
 	}
 	else
