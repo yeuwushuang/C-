@@ -62,23 +62,24 @@ int main()
 {
 	setlocale(LC_ALL, "chs"); // 防止乱码
 	// 需要自动保存的文件夹
-	wchar_t* str = L"C:\\Users\\333\\Desktop\\MITER196\\.minecraft\\MITE\\saves\\1.6.4\\极其困难的世界";
+	wchar_t* str = L"C:\\Users\\333\\Desktop\\MITER196\\.minecraft\\MITE\\saves\\1.6.4\\极其困难的世界-";
 	// 保存的个路径
 	wchar_t backups[400] = L"C:\\Users\\333\\Desktop\\233\\极其困难的世界";
 	// 以分钟为单位
 	int time = 3;
-	if(GetFileAttributesW(backups)!= INVALID_FILE_ATTRIBUTES){
+	if (GetFileAttributesW(str) != INVALID_FILE_ATTRIBUTES){//判断源文件是否存在
 		
-	while (1)
-	{
-		SYSTEMTIME Fine_File;
-		GetLocalTime(&Fine_File); // 时间结构体初始化
-		swprintf(backups, 400, L"%ls%d年-%d月-%d日-%d时-%d分-%d秒", backups, Fine_File.wYear, Fine_File.wMonth, Fine_File.wDay, Fine_File.wHour, Fine_File.wMinute, Fine_File.wSecond);
-		create(backups);		  // 创建存档文件夹
-		FFile_fine(str, backups); // 复制文件
-		wprintf(L"保存成功 %ls\n", backups);
-		Sleep(time * 100); // 指定存档时间
-	}}
+		while (1)
+		{
+			SYSTEMTIME Fine_File;
+			GetLocalTime(&Fine_File); // 时间结构体初始化
+			swprintf(backups, 400, L"%ls%d年-%d月-%d日-%d时-%d分-%d秒", backups, Fine_File.wYear, Fine_File.wMonth, Fine_File.wDay, Fine_File.wHour, Fine_File.wMinute, Fine_File.wSecond);
+			create(backups);		  // 创建存档文件夹
+			FFile_fine(str, backups); // 复制文件
+			wprintf(L"保存成功 %ls\n", backups);
+			Sleep(time * 10000); // 指定存档时间
+		}
+}
 	else {
 		printf("备份源不存在");
 	}
