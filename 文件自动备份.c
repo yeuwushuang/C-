@@ -67,7 +67,7 @@ int main()
 	wchar_t backups[400] = L"C:\\Users\\333\\Desktop\\233\\极其困难的世界";
 	// 以分钟为单位
 	int time = 3;
-	if(GetFileAttributesW(backups)!= INVALID_FILE_ATTRIBUTES)
+	if(GetFileAttributesW(backups)!= INVALID_FILE_ATTRIBUTES){
 		
 	while (1)
 	{
@@ -78,7 +78,7 @@ int main()
 		FFile_fine(str, backups); // 复制文件
 		wprintf(L"保存成功 %ls\n", backups);
 		Sleep(time * 100); // 指定存档时间
-	}
+	}}
 	else {
 		printf("备份源不存在");
 	}
