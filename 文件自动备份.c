@@ -3,7 +3,7 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <locale.h>
-void Str_cat(wchar_t *str)
+void Str_cat(wchar_t* str)
 {
 	// 文件地址输入
 	wchar_t get_char;
@@ -19,7 +19,7 @@ void Str_cat(wchar_t *str)
 		i++;
 	}
 }
-void create(wchar_t *str)
+void create(wchar_t* str)
 {
 	// 创建文件夹模块
 	if (CreateDirectoryW(str, NULL)) // 创建文件夹
@@ -32,7 +32,7 @@ void create(wchar_t *str)
 	}
 }
 
-void FFile_fine(wchar_t *str, wchar_t *backups)
+void FFile_fine(wchar_t* str, wchar_t* backups)
 {
 	// 复制复制文件模块
 	WIN32_FIND_DATAW Fine_Structure;							   // 存储文件或文件夹信息
@@ -91,7 +91,7 @@ int main()
 	Str_cat(str);
 	wprintf(L"\n请输入文件夹存储的位置");
 	Str_cat(backups);
-	wprintf(L"请输入备份时间，以分钟为单位");
+	wprintf(L"\n请输入备份时间，以分钟为单位");
 	scanf("%d", &time);
 
 	Sleep(time * 60000); // 防止启动程序就备份
