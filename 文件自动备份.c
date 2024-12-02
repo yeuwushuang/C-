@@ -3,6 +3,20 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <locale.h>
+void Str_cat(wchar_t *str) {
+	//文件地址输入
+	wchar_t get_char;
+	int i = 0;
+	while (get_char = getwchar()) {	//存储getwcahr获取的字符
+		if (get_char == '\n') {
+			str[i] = '\0';
+			break;
+		};
+		str[i] = get_char;
+		i++;
+	}
+
+}
 void create(wchar_t* str)
 {
 	// 创建文件夹模块
@@ -61,16 +75,25 @@ void FFile_fine(wchar_t* str, wchar_t* backups)
 int main()
 {
 	setlocale(LC_ALL, "chs"); // 防止乱码
-	// 需要自动保存的文件夹
-	wchar_t* str = L"C:\\Users\\333\\Desktop\\MITER196\\.minecraft\\MITE\\saves\\1.6.4\\极其困难的世界-";
-	//保存的路径源
-	wchar_t backups[400] = L"C:\\Users\\333\\Desktop\\233\\极其困难的世界";
+	// 需要自动保存的文件夹L"C:\Users\333\Desktop\MITE R196\.minecraft\MITE\saves\1.6.4\极其困难的世界-"
+	wchar_t str[400] ;
+	//C:\Users\\333\Desktop
+	//保存的路径源 L"C:\Users\333\Desktop\233\极其困难的世界"
+	wchar_t backups[400];
 	// 保存的路径源+时间形成的文件夹
 	wchar_t str_backups[400];
-	// 以分钟为单位
-	int time = 1;
+	//备份时间
+	 	int time;
+	//提示用户输入备份地址
+	printf("请输入要备份的文件夹");
+	Str_cat(str);
+	printf("\n请输入文件夹存储的位置");
+	Str_cat(backups);
+	printf("请输入备份时间，以分钟为单位");
+		scanf("%d", &time);
+
 	Sleep(time * 60000); // 防止启动程序就备份
-	if (GetFileAttributesW(str) != INVALID_FILE_ATTRIBUTES)
+	if (GetFileAttributesW(str) != INVALID_FILE_ATTRIBUTES&&time!=0)
 	{ // 判断源文件是否存在
 
 		while (1)
