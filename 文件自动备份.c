@@ -3,21 +3,23 @@
 #include <Windows.h>
 #include <stdio.h>
 #include <locale.h>
-void Str_cat(wchar_t *str) {
-	//文件地址输入
+void Str_cat(wchar_t *str)
+{
+	// 文件地址输入
 	wchar_t get_char;
 	int i = 0;
-	while (get_char = getwchar()) {	//存储getwcahr获取的字符
-		if (get_char == '\n') {
+	while (get_char = getwchar())
+	{ // 存储getwcahr获取的字符
+		if (get_char == '\n')
+		{
 			str[i] = '\0';
 			break;
 		};
 		str[i] = get_char;
 		i++;
 	}
-
 }
-void create(wchar_t* str)
+void create(wchar_t *str)
 {
 	// 创建文件夹模块
 	if (CreateDirectoryW(str, NULL)) // 创建文件夹
@@ -30,7 +32,7 @@ void create(wchar_t* str)
 	}
 }
 
-void FFile_fine(wchar_t* str, wchar_t* backups)
+void FFile_fine(wchar_t *str, wchar_t *backups)
 {
 	// 复制复制文件模块
 	WIN32_FIND_DATAW Fine_Structure;							   // 存储文件或文件夹信息
@@ -76,24 +78,24 @@ int main()
 {
 	setlocale(LC_ALL, "chs"); // 防止乱码
 	// 需要自动保存的文件夹L"C:\Users\333\Desktop\MITE R196\.minecraft\MITE\saves\1.6.4\极其困难的世界-"
-	wchar_t str[400] ;
-	//C:\Users\\333\Desktop
-	//保存的路径源 L"C:\Users\333\Desktop\233\极其困难的世界"
+	wchar_t str[400];
+	// C:\Users\\333\Desktop
+	// 保存的路径源 L"C:\Users\333\Desktop\233\极其困难的世界"
 	wchar_t backups[400];
 	// 保存的路径源+时间形成的文件夹
 	wchar_t str_backups[400];
-	//备份时间
-	 	int time;
-	//提示用户输入备份地址
-	printf("请输入要备份的文件夹");
+	// 备份时间
+	int time;
+	// 提示用户输入备份地址
+	wprintf(L"请输入要备份的文件夹");
 	Str_cat(str);
-	printf("\n请输入文件夹存储的位置");
+	wprintf(L"\n请输入文件夹存储的位置");
 	Str_cat(backups);
-	printf("请输入备份时间，以分钟为单位");
-		scanf("%d", &time);
+	wprintf(L"请输入备份时间，以分钟为单位");
+	scanf("%d", &time);
 
 	Sleep(time * 60000); // 防止启动程序就备份
-	if (GetFileAttributesW(str) != INVALID_FILE_ATTRIBUTES&&time!=0)
+	if (GetFileAttributesW(str) != INVALID_FILE_ATTRIBUTES && time != 0)
 	{ // 判断源文件是否存在
 
 		while (1)
@@ -101,7 +103,7 @@ int main()
 			SYSTEMTIME Fine_File;
 			GetLocalTime(&Fine_File); // 时间结构体初始化
 			swprintf(str_backups, 400, L"%ls%d年-%d月-%d日-%d时-%d分-%d秒", backups, Fine_File.wYear, Fine_File.wMonth, Fine_File.wDay, Fine_File.wHour, Fine_File.wMinute, Fine_File.wSecond);
-			create(str_backups);	  // 创建存档文件夹
+			create(str_backups);		  // 创建存档文件夹
 			FFile_fine(str, str_backups); // 复制文件
 			wprintf(L"保存成功 %ls\n", str_backups);
 			str_backups[0] = '\0';
